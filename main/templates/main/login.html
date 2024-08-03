@@ -6,10 +6,12 @@ Project {% endblock title %} {% block head %}
 <section class="auth-container">
   <div class="auth-box">
     <h2>Login</h2>
-    <form class="auth-form">
+    <form class="auth-form" method="post" action="">
+      {% csrf_token %}
+
       <small class="error" hidden></small>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <input type="email" placeholder="Email" name="email" />
+      <input type="password" placeholder="Password" name="password" />
       <button class="auth-submit" type="submit">Login</button>
     </form>
     <p class="auth-text">
