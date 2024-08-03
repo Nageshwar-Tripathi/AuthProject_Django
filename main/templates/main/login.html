@@ -1,0 +1,21 @@
+{% extends "main/base.html" %} {% load static %} {% block title %} Login | Auth
+Project {% endblock title %} {% block head %}
+<link rel="stylesheet" href="{% static 'main/css/auth.css' %}" />
+{% endblock head %} {% block body %}
+
+<section class="auth-container">
+  <div class="auth-box">
+    <h2>Login</h2>
+    <form class="auth-form">
+      <small class="error" hidden></small>
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button class="auth-submit">Login</button>
+    </form>
+    <p class="auth-text">
+      Don't have an account? <a href="/register/">Create Here</a>
+    </p>
+  </div>
+</section>
+
+{% endblock body %}
