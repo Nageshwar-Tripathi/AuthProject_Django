@@ -7,8 +7,11 @@ def home(request):
 
     if request.session.has_key('logged'):
         email = request.session['logged']
+
+        user = User.objects.get(email=email)
+
         data = {
-            'email': email
+            'user': user 
         }
         return render(request, 'main/home.html',data)
     else:
@@ -62,3 +65,11 @@ def login(request):
 
         else:
             return render(request, 'main/login.html')
+
+
+
+def logout (request):
+    if request.session.has_key('logged'):
+        del request.session['logged']
+    
+    return redirect('/login/')
