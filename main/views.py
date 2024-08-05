@@ -4,7 +4,11 @@ from .models import User
 from django.contrib import messages
 
 def home(request):
-    return render(request, 'main/home.html')
+    email = ""
+    data = {
+        'email': email
+    }
+    return render(request, 'main/home.html',data)
 
 
 def register(request):
@@ -34,4 +38,16 @@ def register(request):
 
 
 def login(request):
-    return render(request, 'main/login.html')
+    if request.method == 'POST':
+        
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        if User.objects.filter(email=email, password=password).exists():
+            return redirect('/')
+        else:
+            messages.error(request, "Email or/and Password is incorrect")
+            return render(request, 'main/login.html')
+
+    else:
+        return render(request, 'main/login.html')

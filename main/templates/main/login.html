@@ -7,8 +7,9 @@ Project {% endblock title %} {% block head %}
   <div class="auth-box">
     <h2>Login</h2>
     <form class="auth-form" method="post" action="">
-      {% csrf_token %}
-
+      {% csrf_token %} {% if messages %} {% for message in messages %}
+      <small class="error">{{message}}</small>
+      {% endfor %} {% endif %}
       <small class="error" hidden></small>
       <input type="email" placeholder="Email" name="email" />
       <input type="password" placeholder="Password" name="password" />
