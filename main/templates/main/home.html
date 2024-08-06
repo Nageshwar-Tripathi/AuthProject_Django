@@ -4,7 +4,9 @@ Project {% endblock title %} {% block head %}
 {% endblock head %} {% block body %} {% include 'main/navbar.html' %}
 <section class="home-container">
   <div class="post-list">
-    {% for post in posts %}
+    {% if messages %} {% for message in messages %}
+    <small class="success">{{message}}</small>
+    {% endfor %} {% endif %} {% for post in posts %}
     <a class="post-item" href="/post/{{post.id}}/">
       <h3>{{post.title}} <span>(Author: {{post.user.name}})</span></h3>
       <p>{{post.content | truncatechars:250}}</p>

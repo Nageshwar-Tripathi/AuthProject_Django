@@ -10,7 +10,7 @@ def home(request):
 
         user = User.objects.get(email=email)
 
-        all_posts = Post.objects.all()
+        all_posts = Post.objects.all().order_by('-timestamp')
 
         data = {
             'user': user ,
@@ -88,7 +88,7 @@ def create_post(request):
             )
 
             new_post.save()
-
+            messages.info(request, 'Post Created Successfully!')
             return redirect('/')
 
         else:
