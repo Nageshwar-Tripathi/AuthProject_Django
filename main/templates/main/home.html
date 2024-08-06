@@ -13,7 +13,7 @@ Project {% endblock title %} {% block head %}
     {% endfor %}
   </div>
   <div class="create-side">
-    <form action="">
+    <form action="/create/" method="post">
       {% csrf_token %}
       <input type="text" name="title" placeholder="Title" />
       <textarea name="content" placeholder="Post Content"></textarea>

@@ -71,6 +71,33 @@ def login(request):
 
 
 
+def create_post(request):
+    if request.session.has_key('logged'):
+        if request.method == 'POST':
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+
+            user_email = request.session['logged']
+
+            user = User.objects.get(email=user_email)
+
+            new_post = Post(
+                title=title,
+                content=content,
+                user=user
+            )
+
+            new_post.save()
+
+            return redirect('/')
+
+        else:
+            return redirect('/')
+    else:
+        return redirect('/login/')
+
+
+
 def logout (request):
     if request.session.has_key('logged'):
         del request.session['logged']
