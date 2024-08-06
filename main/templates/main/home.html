@@ -4,30 +4,13 @@ Project {% endblock title %} {% block head %}
 {% endblock head %} {% block body %} {% include 'main/navbar.html' %}
 <section class="home-container">
   <div class="post-list">
-    <a class="post-item" href="">
-      <h3>How to solve this? <span>(Author: Random User)</span></h3>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam saepe
-        voluptatem ut, nesciunt cum voluptates iure iusto tempora optio id quae
-        fugit itaque sint, aliquid quisquam, totam quod dolorem adipisci.
-      </p>
+    {% for post in posts %}
+    <a class="post-item" href="/post/{{post.id}}/">
+      <h3>{{post.title}} <span>(Author: {{post.user.name}})</span></h3>
+      <p>{{post.content | truncatechars:250}}</p>
+      <h2>Datetime: {{post.timestamp}}</h2>
     </a>
-    <a class="post-item" href="">
-      <h3>How to solve this? <span>(Author: Random User)</span></h3>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam saepe
-        voluptatem ut, nesciunt cum voluptates iure iusto tempora optio id quae
-        fugit itaque sint, aliquid quisquam, totam quod dolorem adipisci.
-      </p>
-    </a>
-    <a class="post-item" href="">
-      <h3>How to solve this? <span>(Author: Random User)</span></h3>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam saepe
-        voluptatem ut, nesciunt cum voluptates iure iusto tempora optio id quae
-        fugit itaque sint, aliquid quisquam, totam quod dolorem adipisci.
-      </p>
-    </a>
+    {% endfor %}
   </div>
   <div class="create-side">
     <form action="">

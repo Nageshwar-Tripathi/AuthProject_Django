@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import User
+from .models import User, Post
 from django.contrib import messages
 
 def home(request):
@@ -10,8 +10,11 @@ def home(request):
 
         user = User.objects.get(email=email)
 
+        all_posts = Post.objects.all()
+
         data = {
-            'user': user 
+            'user': user ,
+            'posts': all_posts,
         }
         return render(request, 'main/home.html',data)
     else:

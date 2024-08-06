@@ -21,6 +21,7 @@
   border-radius: 10px;
   background: white;
   cursor: pointer;
+  width: 100%;
 }
 .post-item h3 {
   font-size: 18px;
@@ -33,6 +34,12 @@
 .post-item p {
   font-size: 15px;
   color: black;
+}
+.post-item h2 {
+  font-size: 14px;
+  color: var(--primary);
+  font-weight: 500;
+  margin-top: 15px;
 }
 .create-side {
   flex: 1;
