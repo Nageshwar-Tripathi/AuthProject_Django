@@ -1,0 +1,44 @@
+.navbar {
+  width: 100%;
+  padding: 16px 40px;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.nav-header {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+}
+.nav-menu-item {
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+}
+
+.nav-logged {
+  font-size: 18px;
+  color: white;
+  font-weight: 400;
+}
+.nav-logged span {
+  font-weight: bold;
+}
+.logout {
+  padding: 5px 20px;
+  border-radius: 10px;
+  background: white;
+  color: black;
+}

@@ -1,8 +1,41 @@
-<h1>This is home</h1>
-
-{{user.name}}
-<br />
-{{user.email}}
-<br />
-<br />
-<a href="/logout/">Logout</a>
+{% extends "main/base.html" %} {% load static %} {% block title %} Home | Auth
+Project {% endblock title %} {% block head %}
+<link rel="stylesheet" href="{% static 'main/css/home.css' %}" />
+{% endblock head %} {% block body %} {% include 'main/navbar.html' %}
+<section class="home-container">
+  <div class="post-list">
+    <a class="post-item" href="">
+      <h3>How to solve this? <span>(Author: Random User)</span></h3>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam saepe
+        voluptatem ut, nesciunt cum voluptates iure iusto tempora optio id quae
+        fugit itaque sint, aliquid quisquam, totam quod dolorem adipisci.
+      </p>
+    </a>
+    <a class="post-item" href="">
+      <h3>How to solve this? <span>(Author: Random User)</span></h3>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam saepe
+        voluptatem ut, nesciunt cum voluptates iure iusto tempora optio id quae
+        fugit itaque sint, aliquid quisquam, totam quod dolorem adipisci.
+      </p>
+    </a>
+    <a class="post-item" href="">
+      <h3>How to solve this? <span>(Author: Random User)</span></h3>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam saepe
+        voluptatem ut, nesciunt cum voluptates iure iusto tempora optio id quae
+        fugit itaque sint, aliquid quisquam, totam quod dolorem adipisci.
+      </p>
+    </a>
+  </div>
+  <div class="create-side">
+    <form action="">
+      {% csrf_token %}
+      <input type="text" name="title" placeholder="Title" />
+      <textarea name="content" placeholder="Post Content"></textarea>
+      <button type="submit">Post</button>
+    </form>
+  </div>
+</section>
+{% endblock body %}
