@@ -37,7 +37,29 @@ def post(request, id):
         return render(request, 'main/post.html', data)
     else:
         return redirect('/login/')
+    
 
+def edit(request, id):
+    if request.session.has_key('logged'):
+        if request.method == 'POST':
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+
+            post = Post.objects.get(id=id)
+            post.title = title
+            post.content = content
+            post.save()
+
+            messages.info(request, "Post Edit Successfull")
+            return redirect('/')
+
+        else:
+            return redirect('/')
+    else:
+        return redirect('/login/')
+    
+
+    
 def delete(request, id):
     if request.session.has_key('logged'):
         email = request.session['logged']

@@ -45,3 +45,45 @@
   cursor: pointer;
   margin-left: 15px;
 }
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 50px;
+  display: none;
+}
+.edit-form input,
+.edit-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid rgb(200, 200, 200);
+}
+.edit-form textarea {
+  height: 200px;
+}
+.edit-form button {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: var(--primary);
+  font-family: "Open Sans";
+  font-weight: 500;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+.edit-form button:hover {
+  background: var(--secondary);
+}

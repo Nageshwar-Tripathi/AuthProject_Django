@@ -8,9 +8,53 @@ Project {% endblock title %} {% block head %}
 
   {% if owner %}
   <div class="post-action">
-    <a href="" class="edit-button">Edit</a>
+    <a onclick="toggleForm()" class="edit-button">Edit</a>
     <a href="/delete/{{post.id}}/" class="delete-button">Delete</a>
   </div>
+
+  <form
+    action="/edit/{{post.id}}/"
+    method="post"
+    class="edit-form"
+    id="edit-form"
+  >
+    <h2 class="edit-head">Edit Post</h2>
+    {% csrf_token %}
+    <input
+      type="text"
+      name="title"
+      placeholder="Post Title"
+      value="{{post.title}}"
+      required
+    />
+    <textarea name="content" placeholder="Post Content">
+{{post.content}}
+</textarea
+    >
+    <button type="submit">Save</button>
+  </form>
+
   {% endif %}
 </section>
+
+<script>
+  let formHidden = true;
+
+  const toggleForm = () => {
+    if (formHidden) {
+      showEditForm();
+    } else {
+      hideEditForm();
+    }
+  };
+
+  const showEditForm = () => {
+    document.getElementById("edit-form").style.display = "flex";
+    formHidden = false;
+  };
+  const hideEditForm = () => {
+    document.getElementById("edit-form").style.display = "none";
+    formHidden = true;
+  };
+</script>
 {% endblock body %}
