@@ -1,0 +1,16 @@
+{% extends "main/base.html" %} {% load static %} {% block title %} Post | Auth
+Project {% endblock title %} {% block head %}
+<link rel="stylesheet" href="{% static 'main/css/post.css' %}" />
+{% endblock head %} {% block body %} {% include 'main/navbar.html' %}
+<section class="post-container">
+  <h2 class="post-head">{{post.title}}</h2>
+  <p class="post-content">{{post.content}}</p>
+
+  {% if owner %}
+  <div class="post-action">
+    <a href="" class="edit-button">Edit</a>
+    <a href="" class="delete-button">Delete</a>
+  </div>
+  {% endif %}
+</section>
+{% endblock body %}

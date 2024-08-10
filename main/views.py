@@ -21,6 +21,23 @@ def home(request):
         return redirect('/login/')
 
 
+def post(request, id):
+    if request.session.has_key('logged'):
+        email = request.session['logged']
+        user = User.objects.get(email=email)
+        post = Post.objects.get(id=id)
+        is_owner = False
+        if post.user == user:
+            is_owner = True
+        data = {
+            'user': user ,
+            'post': post,
+            'owner': is_owner
+            }
+        return render(request, 'main/post.html', data)
+    else:
+        return redirect('/login/')
+
 def register(request):
     if request.session.has_key('logged'):
         return redirect('/')
