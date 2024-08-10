@@ -9,7 +9,7 @@ Project {% endblock title %} {% block head %}
   {% if owner %}
   <div class="post-action">
     <a href="" class="edit-button">Edit</a>
-    <a href="" class="delete-button">Delete</a>
+    <a href="/delete/{{post.id}}/" class="delete-button">Delete</a>
   </div>
   {% endif %}
 </section>

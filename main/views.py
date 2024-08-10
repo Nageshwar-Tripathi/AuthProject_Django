@@ -38,6 +38,18 @@ def post(request, id):
     else:
         return redirect('/login/')
 
+def delete(request, id):
+    if request.session.has_key('logged'):
+        email = request.session['logged']
+        user = User.objects.get(email=email)
+        post = Post.objects.get(id=id)
+
+        if user == post.user:
+            post.delete()
+        return redirect('/')
+    else:
+        return redirect('/login/')
+
 def register(request):
     if request.session.has_key('logged'):
         return redirect('/')
