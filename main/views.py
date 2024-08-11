@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import User, Post
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password, check_password
 
 def home(request):
 
@@ -87,11 +88,13 @@ def register(request):
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email already exists')
                 return render(request, 'main/register.html')
+
+            encrypted_password = make_password(password)
             
             new_user = User(
                 name=name,
                 email=email,
-                password=password
+                password=encrypted_password
             )
             new_user.save()
             request.session['logged'] = email
@@ -110,9 +113,16 @@ def login(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
 
-            if User.objects.filter(email=email, password=password).exists():
-                request.session['logged'] = email
-                return redirect('/')
+
+            if User.objects.filter(email=email).exists():
+                user = User.objects.get(email=email)
+                password_from_db = user.password
+                if check_password(password, password_from_db):
+                    request.session['logged'] = email
+                    return redirect('/')
+                else:
+                    messages.error(request, "Email or/and Password is incorrect")
+                    return render(request, 'main/login.html')
             else:
                 messages.error(request, "Email or/and Password is incorrect")
                 return render(request, 'main/login.html')
